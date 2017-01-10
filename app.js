@@ -16,12 +16,6 @@ var app = express();
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-// Routers
-app.use('/', indexRouter);
-app.use('/register', registerRouter);
-app.use('/home', homeRouter);
-app.use('/test', testRouter);
-
 app.use(session({
    secret: 'secret',
    key: 'user',
@@ -33,6 +27,12 @@ app.use(session({
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Routers
+app.use('/', indexRouter);
+app.use('/register', registerRouter);
+app.use('/home', homeRouter);
+app.use('/test', testRouter);
 
 // server port set and listen
 var serverPort = process.env.port || 3000;
