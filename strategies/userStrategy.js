@@ -29,19 +29,14 @@ passport.use('local', new LocalStrategy({
 
 // serialize user - "dehydrate"
 passport.serializeUser(function(user, done) {
-  console.log('serialized: ', user);
+  console.log('serializeUser');
   done(null, user.id);
 });
 
 // deserialize user - "rehydrate"
 passport.deserializeUser(function(id, done) {
-    console.log('deserialized');
+  console.log('deserializeUser');
     User.findById(id, function(err, user) {
-      if(err) {
-        done(err);
-      }
-
-      console.log('deserialized: ', user);
       done(null, user);
     });
   });
